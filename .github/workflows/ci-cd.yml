@@ -1,5 +1,4 @@
 name: CI-CD-Pipeline
-
 on:
   push:
     branches: [ "main" ]
@@ -35,7 +34,7 @@ jobs:
       - name: Deploy to ECS
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
-          task-definition: ecs-task.json
+          task-definition: ./ecs-task.json   # <<< FIXED
           service: task1-service
           cluster: task1-fargate-cluster
           wait-for-service-stability: true
