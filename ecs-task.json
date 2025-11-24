@@ -1,0 +1,31 @@
+{
+  "family": "task1-taskdef",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512",
+  "executionRoleArn": "arn:aws:iam::320866336076:role/ecsTaskExecutionRole",
+  "taskRoleArn": "arn:aws:iam::320866336076:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "task1-container",
+      "image": "320866336076.dkr.ecr.ap-south-1.amazonaws.com/fargate-ecr:latest",
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 5001,
+          "hostPort": 5001,
+          "protocol": "tcp"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/task1-taskdef",
+          "awslogs-region": "ap-south-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ]
+}
